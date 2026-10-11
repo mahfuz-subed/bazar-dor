@@ -1,8 +1,8 @@
-import { FaCaretUp } from "react-icons/fa";
+
 import { FaCaretDown } from "react-icons/fa";
 import { ICategoryData } from "./Marquee";
 
-const Upward = async () => {
+const Downward = async () => {
     const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products")
     const data = await res.json()
     const upwardData = data.filter((d:ICategoryData)=> d.change.dir === "down")
@@ -45,4 +45,4 @@ const Upward = async () => {
     );
 };
 
-export default Upward;
+export default Downward;
