@@ -12,7 +12,7 @@ const NavLinks = async () => {
     const res = await fetch ("https://openapi.programming-hero.com/api/bazardor/categories");
     const data = await res.json();
     return (
-        <div className='flex gap-4 md:gap-7 text-[12px] md:text-base'>
+        <div className='flex gap-4 py-3 text-[12px] md:gap-7 text-base'>
             {
                 data.map((d:ICategories) => <ActiveLinks key={d.id} href={`/${d.slug}`} title={d.nameBn} icon={d.icon}/>)
             }
