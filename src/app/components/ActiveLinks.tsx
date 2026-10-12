@@ -13,7 +13,7 @@ const ActiveLinks = ({href,title,icon}:ICategories) => {
 
     return (
         <div>
-            <Link href={href} className={pathName === href ? "text-green-800 font-bold" :""}>{icon} {title}</Link>
+            <Link href={`/category/${href}`} className={pathName === href ? "text-green-800 font-bold" :""}>{icon} {title}</Link>
         </div>
     );
 };

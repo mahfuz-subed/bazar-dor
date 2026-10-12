@@ -1,6 +1,6 @@
 import { FaCaretDown } from "react-icons/fa";
 import { FaCaretUp } from "react-icons/fa";
-import { ICategoryData } from "./Marquee";
+import { ICategoryData } from "../components/Marquee";
 
 const AllProducts = async () => {
       const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products")
