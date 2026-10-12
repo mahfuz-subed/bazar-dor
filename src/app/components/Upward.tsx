@@ -5,7 +5,7 @@ import { ICategoryData } from "./Marquee";
 const Upward = async () => {
     const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products")
     const data = await res.json()
-    const upwardData = data.filter((d:ICategoryData)=> d.change.dir === "up")
+    const upwardData = data.filter((d:ICategoryData)=> d.change.dir === "up").sort((a:ICategoryData, b:ICategoryData)=> b.change.pct - a.change.pct)
     
 
     const units:Record <string,string> = {
@@ -46,7 +46,7 @@ const Upward = async () => {
 <p className="text-xl font-bold">{toBengaliPrice(d.today)} টাকা</p>
     </div>
    <div className="bg-gray-100 p-1 text-red-500 flex justify-center items-center rounded-2xl">
-    <FaCaretUp/><p className=""> {toBengaliPrice(d.change.pct)}%</p>
+    <FaCaretUp/><p className=""> {d.change.dir === "flat"? toBengaliPrice(d.change.pct)+"%": toBengaliPrice(d.change.pct)+"%" }</p>
    </div>
   </div>
                 </div>

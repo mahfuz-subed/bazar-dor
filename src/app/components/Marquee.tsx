@@ -18,7 +18,7 @@ export interface ICategoryData{
     lastWeek: number,
     lastMonth: number,
    change: {
-    dir: "up" | "down";
+    dir: "up" | "down" | "flat";
     pct: number;
   }
 }
@@ -46,7 +46,8 @@ const Marqueee = async () => {
         <div className="flex gap-4 box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15); ">
              <MarqueeText duration={10} direction="right" className="flex gap-6">
             {
-                data.map((d:ICategoryData)=> <div key={d.id} className="flex justify-center items-center  gap-1 text-sm"> {d.image} {d.nameBn} <span className="font-bold">{toBengaliPrice(d.today)} টাকা/{toBengaliUnits(d.unit)}</span> {d.change.dir === "up"? <span className="flex justify-center items-center text-red-500"><FaCaretUp/>{toBengaliPrice(d.change.pct)}% </span>: <span className = "flex justify-center items-center text-green-500" ><FaCaretDown /> {toBengaliPrice(d.change.pct)}% </span> }</div>)
+                data.map((d:ICategoryData)=> <div key={d.id} className="flex justify-center items-center  gap-1 text-sm"> {d.image} {d.nameBn} <span className="font-bold">{toBengaliPrice(d.today)} টাকা/{toBengaliUnits(d.unit)}</span> 
+                { d.change.dir === "flat"? toBengaliPrice(d.change.pct)+"%": d.change.dir === "up"? <span className="flex justify-center items-center text-red-500"><FaCaretUp/>{toBengaliPrice(d.change.pct)}% </span>: d.change.dir === "down"? <span className = "flex justify-center items-center text-green-500" ><FaCaretDown /> {toBengaliPrice(d.change.pct)}% </span>: "" }</div>)
             }
     </MarqueeText>
         </div>
