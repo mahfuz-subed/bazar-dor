@@ -5,6 +5,17 @@ import { ICategoryData } from "./Marquee";
 const AllProducts = async () => {
       const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products")
     const data = await res.json()
+      const units:Record <string,string> = {
+      kg: "কেজি",
+      litre: "লিটার" ,
+      dozen: "ডজন",
+      piece: "পিস",
+    }
+
+    const toBengaliUnits = ((u:string) => units[u?.toLowerCase()] || u)
+    
+    const toBengaliPrice = ((price: number|string) =>{ const num = Number(price)
+         {return new Intl.NumberFormat("bn-BD").format(num)} })
     return (
         <div>
                     <div className="grid justify-start items-center gap-1 mt-15 mb-8">
@@ -23,7 +34,7 @@ const AllProducts = async () => {
                 <h2 className="card-title">
               {d.nameBn}
             </h2>
-            <p>প্রতি কেজি</p>
+            <p>প্রতি {toBengaliUnits(d.unit)}</p>
             </div>
           </div>
                  <div className="flex justify-between items-center">
@@ -31,13 +42,13 @@ const AllProducts = async () => {
                 <p>
         আজকের দাম
         </p>
-        <p className="text-xl font-bold">{d.today} TK</p>
+        <p className="text-xl font-bold">{toBengaliPrice(d.today)} TK</p>
             </div>
           {
             d.change.dir === "down"?  <div className="bg-gray-100 p-1 text-green-500 flex justify-center items-center rounded-2xl">
-           <FaCaretDown /><p className=""> {d.change.pct}%</p>
+           <FaCaretDown /><p className=""> {toBengaliPrice(d.change.pct)}%</p>
            </div> : <div className="bg-gray-100 p-1 text-red-500 flex justify-center items-center rounded-2xl">
-    <FaCaretUp/><p className=""> {d.change.pct}%</p>
+    <FaCaretUp/><p className=""> {toBengaliPrice(d.change.pct)}%</p>
    </div>
           }
           </div>
