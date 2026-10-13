@@ -1,6 +1,6 @@
 import { FaCaretUp } from "react-icons/fa";
 import { ICategoryData } from "./Marquee";
-
+import Link from "next/link";
 
 const Upward = async () => {
     const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products")
@@ -25,7 +25,7 @@ const Upward = async () => {
             </div>
             <div className="grid grid-cols-1 justify-items-center gap-5 md:grid-cols-2 xl:grid-cols-3 ">
               {
-                upwardData.slice(0,6).map((d:ICategoryData)=>   <div key={d.id} className="card bg-base-100 w-80 shadow-sm">
+                upwardData.slice(0,6).map((d:ICategoryData)=>   <Link href={`/productDetails/${d.id}`} key={d.id} className="card bg-base-100 w-80 shadow-sm">
   <div className="card-body">
   <div className="flex justify-start items-center gap-2">
      <div className="bg-gray-100 p-3 rounded-2xl">
@@ -50,7 +50,7 @@ const Upward = async () => {
    </div>
   </div>
                 </div>
-</div>)
+</Link>)
               }
             </div>
         </div>

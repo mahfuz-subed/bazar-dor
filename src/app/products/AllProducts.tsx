@@ -6,6 +6,7 @@ import Link from "next/link";
 const AllProducts = async () => {
       const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products")
     const data = await res.json()
+    console.log(data.id)
       const units:Record <string,string> = {
       kg: "কেজি",
       litre: "লিটার" ,
@@ -13,12 +14,13 @@ const AllProducts = async () => {
       piece: "পিস",
     }
 
+
     const toBengaliUnits = ((u:string) => units[u?.toLowerCase()] || u)
     
     const toBengaliPrice = ((price: number|string) =>{ const num = Number(price)
          {return new Intl.NumberFormat("bn-BD").format(num)} })
     return (
-      <Link href="/productDetails/">
+    
            <div id="সব-পণ্য">
                     <div className="grid justify-start items-center gap-1 mt-15 mb-8">
                                    <h2 className="text-2xl font-bold"> সব পণ্য</h2>
@@ -26,7 +28,7 @@ const AllProducts = async () => {
                     </div>
                     <div className="grid grid-cols-1 justify-items-center gap-5 md:grid-cols-2 xl:grid-cols-3 ">
                       {
-                        data.map((d:ICategoryData)=>   <div key={d.id} className="card bg-base-100 w-80 shadow-sm">
+                        data.map((d:ICategoryData)=>   <Link href={`/productDetails/${d.id}`}key={d.id} className="card bg-base-100 w-80 shadow-sm">
           <div className="card-body">
           <div className="flex justify-start items-center gap-2">
              <div className="bg-gray-100 p-3 rounded-2xl">
@@ -55,11 +57,11 @@ const AllProducts = async () => {
           }
           </div>
                         </div>
-        </div>)
+        </Link>)
                       }
                     </div>
                 </div>
-      </Link> 
+      
     );
 };
 
