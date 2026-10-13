@@ -10,10 +10,12 @@ interface ICategories{
 }
 const ActiveLinks = ({href,title,icon}:ICategories) => {
     const pathName = usePathname();
+    console.log("path",pathName)
+    console.log("href", href)
 
     return (
         <div>
-            <Link href={`/category/${href}`} className={pathName === href ? "text-green-800 font-bold" :""}>{icon} {title}</Link>
+            <Link href={`/category/${href}`} className= {pathName === `/category${href}` ? "text-green-800 font-bold" : ""}>{icon} {title}</Link>
         </div>
     );
 };
