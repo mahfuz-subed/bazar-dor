@@ -43,10 +43,11 @@ const Marqueee = async () => {
     const toBengaliUnits = ((u:string) => units[u?.toLowerCase()] || u)
   
     return (
-        <div className="flex gap-4 box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15); ">
-             <MarqueeText duration={10} direction="right" className="flex gap-6">
+        <div className="flex gap-4 shadow-sm py-2 ">
+             <MarqueeText duration={5} direction="right">
             {
-                data.map((d:ICategoryData)=> <div key={d.id} className="flex justify-center items-center  gap-1 text-sm"> {d.image} {d.nameBn} <span className="font-bold">{toBengaliPrice(d.today)} টাকা/{toBengaliUnits(d.unit)}</span> 
+                data.map((d:ICategoryData)=> <div key={d.id} className="flex justify-center items-center  gap-2 text-sm"> {d.image} {d.nameBn} 
+                <span className="font-bold">{toBengaliPrice(d.today)} টাকা/{toBengaliUnits(d.unit)}</span> 
                 { d.change.dir === "flat"? toBengaliPrice(d.change.pct)+"%": d.change.dir === "up"? <span className="flex justify-center items-center text-red-500"><FaCaretUp/>{toBengaliPrice(d.change.pct)}% </span>: d.change.dir === "down"? <span className = "flex justify-center items-center text-green-500" ><FaCaretDown /> {toBengaliPrice(d.change.pct)}% </span>: "" }</div>)
             }
     </MarqueeText>

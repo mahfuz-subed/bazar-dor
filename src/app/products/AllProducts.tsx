@@ -1,6 +1,7 @@
 import { FaCaretDown } from "react-icons/fa";
 import { FaCaretUp } from "react-icons/fa";
 import { ICategoryData } from "../components/Marquee";
+import Link from "next/link";
 
 const AllProducts = async () => {
       const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products")
@@ -17,7 +18,8 @@ const AllProducts = async () => {
     const toBengaliPrice = ((price: number|string) =>{ const num = Number(price)
          {return new Intl.NumberFormat("bn-BD").format(num)} })
     return (
-        <div id="সব-পণ্য">
+      <Link href="/productDetails/">
+           <div id="সব-পণ্য">
                     <div className="grid justify-start items-center gap-1 mt-15 mb-8">
                                    <h2 className="text-2xl font-bold"> সব পণ্য</h2>
                                    <p className="text-gray-400">মোট {toBengaliPrice(data.length)}টি পণ্য দেখানো হচ্ছে</p>
@@ -42,7 +44,7 @@ const AllProducts = async () => {
                 <p>
         আজকের দাম
         </p>
-        <p className="text-xl font-bold">{toBengaliPrice(d.today)} TK</p>
+        <p className="text-xl font-bold">{toBengaliPrice(d.today)} টাকা</p>
             </div>
           { 
             d.change.dir === "flat"? toBengaliPrice(d.change.pct)+"%": d.change.dir === "down"?  <div className="bg-gray-100 p-1 text-green-500 flex justify-center items-center rounded-2xl">
@@ -57,6 +59,7 @@ const AllProducts = async () => {
                       }
                     </div>
                 </div>
+      </Link> 
     );
 };
 

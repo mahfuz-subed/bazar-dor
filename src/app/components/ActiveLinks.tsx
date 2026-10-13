@@ -10,8 +10,6 @@ interface ICategories{
 }
 const ActiveLinks = ({href,title,icon}:ICategories) => {
     const pathName = usePathname();
-    console.log("path",pathName)
-    console.log("href", href)
 
     return (
         <div>

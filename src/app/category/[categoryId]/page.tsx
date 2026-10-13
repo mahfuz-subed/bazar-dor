@@ -10,7 +10,6 @@ const CategoryPage = async ({params}: {
     const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products")
     const data = await res.json()
     const filteredData = data.filter((fd:ICategoryData)=> fd.category === categoryId)
-
     
     const toBengaliPrice = ((price: number|string) =>{ const num = Number(price)
          {return new Intl.NumberFormat("bn-BD").format(num)} })
