@@ -1,6 +1,7 @@
 import { FaCaretDown } from "react-icons/fa";
 import { FaCaretUp } from "react-icons/fa";
 import { ICategoryData } from "./Marquee";
+import Link from "next/link";
 
 interface ISortedProduct {
   id: number;
@@ -39,7 +40,7 @@ const Category = ({sortedFilteredData}:{sortedFilteredData:ISortedProduct[]}) =>
             <p className="my-2 text-gray-500">মোট {toBengaliPrice(sortedFilteredData.length)}টি পণ্য দেখানো হচ্ছে</p>
             <div className="grid grid-cols-1 justify-items-center gap-5 md:grid-cols-2 xl:grid-cols-3 ">
             {
-             sortedFilteredData.map((d:ICategoryData)=> <div key={d.id} className="card bg-base-100 w-80 shadow-sm">
+             sortedFilteredData.map((d:ICategoryData)=> <Link href={`/productDetails/${d.id}`} key={d.id} className="card bg-base-100 w-80 shadow-sm">
                        <div className="card-body">
                        <div className="flex justify-start items-center gap-2">
                           <div className="bg-gray-100 p-3 rounded-2xl">
@@ -68,7 +69,7 @@ const Category = ({sortedFilteredData}:{sortedFilteredData:ISortedProduct[]}) =>
                        }
                        </div>
                                      </div>
-                     </div>)
+                     </Link>)
             }
         </div>
         </div>
