@@ -60,9 +60,8 @@ const SignUpPage = () => {
         বিনা করছে সাইন আপ করে সব বিস্তারিত দাম দেখুন।
       </p>
 
-      <div className="fieldset  shadow-sm border-base-300 rounded-box w-xs border p-4">
+      <div className="bg-green-100 fieldset  shadow-sm border-base-300 rounded-box w-xs border p-4">
         <form onSubmit={handleSignUP}>
-          {" "}
           <fieldset className="fieldset">
             <label className="label font-bold">নাম</label>
             <input

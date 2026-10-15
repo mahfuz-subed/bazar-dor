@@ -24,8 +24,8 @@ const ProfilePage = () => {
   return (
     <div className="grid justify-items-center my-10 space-y-3">
       <h2 className="font-bold text-xl"> আমার প্রোফাইল</h2>
-      <p className="text-gray-500">আপনার একাউন্টের তথ্য এখানে দেখুন।</p>
-      <div className="flex justify-between items-center gap-8 shadow-sm p-5 rounded-2xl">
+      <p className="text-gray-500 text-md">আপনার একাউন্টের তথ্য এখানে দেখুন।</p>
+      <div className="bg-green-100 flex justify-between items-center gap-8 shadow-sm px-8 py-5 rounded-2xl">
         <div className="flex justify-center items-center gap-2">
           <div className="avatar avatar-online avatar-placeholder">
             <div className="bg-green-600 text-neutral-content w-16 rounded-full">
@@ -44,17 +44,17 @@ const ProfilePage = () => {
           <Link
             onClick={handleSignOut}
             href="/sign-in"
-            className="text-[10px] rounded-xl font-bold md:text-[13px]"
+            className="text-[12px] rounded-xl font-bold md:text-[13px]"
           >
             সাইন আউট
           </Link>
         </div>
       </div>
-      <div className="shadow-sm rounded-2xl py-4">
+      <div className="bg-green-100 shadow-sm rounded-2xl py-4">
         <h4 className="font-bold text-lg ml-2">তথ্য</h4>
         <form onSubmit={handleUpdateProfile}>
-          <fieldset className="fieldset border-base-100 w-sm  rounded-box border p-4">
-            <label className="label">নাম</label>
+          <fieldset className="fieldset border-green-100 w-sm  rounded-box border p-4">
+            <label className="label font-bold">নাম</label>
             <input type="text" name="name" className="input" />
 
             <button className="btn bg-green-600 mt-4 text-white">আপডেট</button>

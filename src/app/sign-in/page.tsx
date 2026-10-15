@@ -53,9 +53,8 @@ const SignInPage = () => {
         বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে একাউন্টে ঢুকুন।
       </p>
 
-      <div className="shadow-sm border-base-300 rounded-box w-xs border p-4">
+      <div className="bg-green-100 shadow-sm border-base-300 rounded-box w-xs border p-4">
         <form onSubmit={handleSignIn}>
-          {" "}
           <fieldset className="fieldset ">
             <label className="label font-bold">ইমেইল</label>
             <input
