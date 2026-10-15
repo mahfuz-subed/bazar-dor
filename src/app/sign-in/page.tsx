@@ -1,82 +1,102 @@
 "use client";
 
-
 import { authClient } from "../lib/auth-client";
 import { redirect } from "next/navigation";
 import React from "react";
 import Link from "next/link";
-
-
+import { FaGoogle } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 const SignInPage = () => {
+  const handleSignIn = async (e: React.SubmitEvent<HTMLElement>) => {
+    e.preventDefault();
 
-  const handleSignIn = async(e: React.SubmitEvent<HTMLElement>) =>{
-    e.preventDefault()
- 
-    const formData = new FormData (e.target)
-    const user = Object.fromEntries(formData.entries()) as {name: string, email: string, password: string}
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries()) as {
+      name: string;
+      email: string;
+      password: string;
+    };
     console.log(user);
 
-        const {data, error} = await authClient.signIn.email({
-         ...user,
-          callbackURL: "/"
-        })
+    const { data, error } = await authClient.signIn.email({
+      ...user,
+      callbackURL: "/",
+    });
 
-        if(data){
-          console.log(data)
-          redirect("/")
-        }
-        if(error){
-          console.log(error)
-        }
-  }
-
-    const hangleGoogleSignIn = async ()=>{
-          const data = await authClient.signIn.social({
-            provider: "google",
-          })
+    if (data) {
+      console.log(data);
+      redirect("/");
     }
-
-    const handleGithubSignIn = async ()=> {
-      const data = await authClient.signIn.social({
-        provider: "github"
-    })
+    if (error) {
+      console.log(error);
     }
+  };
 
-    return (
-        <div className="grid justify-items-center my-10 space-y-3">
+  const hangleGoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
 
-          <h1 className="font-bold">সাইন ইন</h1>
-          <p className="text-gray-600 text-sm">বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে একাউন্টে ঢুকুন।</p>
+  const handleGithubSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "github",
+    });
+  };
 
-          <div className="shadow-sm border-base-300 rounded-box w-xs border p-4">
-             <form onSubmit={handleSignIn}> <fieldset className="fieldset ">
+  return (
+    <div className="grid justify-items-center my-10 space-y-3">
+      <h1 className="font-bold">সাইন ইন</h1>
+      <p className="text-gray-600 text-sm">
+        বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে একাউন্টে ঢুকুন।
+      </p>
 
+      <div className="shadow-sm border-base-300 rounded-box w-xs border p-4">
+        <form onSubmit={handleSignIn}>
+          {" "}
+          <fieldset className="fieldset ">
+            <label className="label font-bold">ইমেইল</label>
+            <input
+              type="email"
+              className="input"
+              placeholder="you@example.com"
+            />
 
+            <label className="label font-bold">পাসওয়ার্ড</label>
 
+            <input
+              type="password"
+              className="input"
+              placeholder="কমপক্ষে ৮ অক্ষর"
+            ></input>
 
-  <label className="label font-bold">ইমেইল</label>
-  <input type="email" className="input" placeholder="you@example.com" />
- 
-         <label className="label font-bold">পাসওয়ার্ড</label>
-         
-  <input type="password" className="input" placeholder="কমপক্ষে ৮ অক্ষর" ></input>
-            
-
-  <button type="submit" className="btn bg-green-600 text-white mt-4">সাইন ইন</button>
-   <div className="divider">অথবা</div>
-          <p className="text-center font-bold">একাউন্ট নেই? <Link href="/sign-up" className="text-green-500 hover:underline">সাইন আপ করুন</Link></p>
-</fieldset></form>
-     <div className="grid justify-items-center my-2 gap-2">
-       <button onClick={hangleGoogleSignIn}
-      className="btn shadow-sm">Google দিয়ে চালিয়ে যান</button>
-      <button onClick={handleGithubSignIn}
-       className="btn shadow-sm">Github দিয়ে চালিয়ে যান</button>
-     </div>
-          </div>
-            <Link href="/" className="text-gray-500 hover:underline">হোমপেজে ফিরে যান</Link>
+            <button type="submit" className="btn bg-green-600 text-white mt-4">
+              সাইন ইন
+            </button>
+            <div className="divider">অথবা</div>
+            <p className="text-center font-bold">
+              একাউন্ট নেই?{" "}
+              <Link href="/sign-up" className="text-green-500 hover:underline">
+                সাইন আপ করুন
+              </Link>
+            </p>
+          </fieldset>
+        </form>
+        <div className="grid justify-items-center my-2 gap-2">
+          <button onClick={hangleGoogleSignIn} className="btn shadow-sm">
+            <FaGoogle /> Google দিয়ে চালিয়ে যান
+          </button>
+          <button onClick={handleGithubSignIn} className="btn shadow-sm">
+            <FaGithub /> Github দিয়ে চালিয়ে যান
+          </button>
         </div>
-    );
+      </div>
+      <Link href="/" className="text-gray-500 hover:underline">
+        হোমপেজে ফিরে যান
+      </Link>
+    </div>
+  );
 };
 
 export default SignInPage;
