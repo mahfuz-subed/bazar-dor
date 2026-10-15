@@ -4,8 +4,8 @@
 import { authClient } from "../lib/auth-client";
 import { redirect } from "next/navigation";
 import React from "react";
-import { useState } from "react";
 import Link from "next/link";
+
 
 
 const SignInPage = () => {
@@ -31,7 +31,17 @@ const SignInPage = () => {
         }
   }
 
+    const hangleGoogleSignIn = async ()=>{
+          const data = await authClient.signIn.social({
+            provider: "google",
+          })
+    }
 
+    const handleGithubSignIn = async ()=> {
+      const data = await authClient.signIn.social({
+        provider: "github"
+    })
+    }
 
     return (
         <div className="grid justify-items-center my-10 space-y-3">
@@ -39,28 +49,31 @@ const SignInPage = () => {
           <h1 className="font-bold">সাইন ইন</h1>
           <p className="text-gray-600 text-sm">বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে একাউন্টে ঢুকুন।</p>
 
-           <form onSubmit={handleSignIn}> <fieldset className="fieldset  shadow-sm border-base-300 rounded-box w-xs border p-4">
+          <div className="shadow-sm border-base-300 rounded-box w-xs border p-4">
+             <form onSubmit={handleSignIn}> <fieldset className="fieldset ">
 
 
 
 
   <label className="label font-bold">ইমেইল</label>
-  <input type="email" name="email" className="input" placeholder="you@example.com" />
+  <input type="email" className="input" placeholder="you@example.com" />
  
          <label className="label font-bold">পাসওয়ার্ড</label>
          
-  <input type="password" className="input" name="password" placeholder="কমপক্ষে ৮ অক্ষর" ></input>
+  <input type="password" className="input" placeholder="কমপক্ষে ৮ অক্ষর" ></input>
             
-
-
-
-  
-  
 
   <button type="submit" className="btn bg-green-600 text-white mt-4">সাইন ইন</button>
    <div className="divider">অথবা</div>
           <p className="text-center font-bold">একাউন্ট নেই? <Link href="/sign-up" className="text-green-500 hover:underline">সাইন আপ করুন</Link></p>
 </fieldset></form>
+     <div className="grid justify-items-center my-2 gap-2">
+       <button onClick={hangleGoogleSignIn}
+      className="btn shadow-sm">Google দিয়ে চালিয়ে যান</button>
+      <button onClick={handleGithubSignIn}
+       className="btn shadow-sm">Github দিয়ে চালিয়ে যান</button>
+     </div>
+          </div>
             <Link href="/" className="text-gray-500 hover:underline">হোমপেজে ফিরে যান</Link>
         </div>
     );

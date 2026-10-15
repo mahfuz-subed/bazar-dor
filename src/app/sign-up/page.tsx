@@ -33,7 +33,17 @@ const SignUpPage = () => {
         }
   }
 
+ const hangleGoogleSignIn = async ()=>{
+          const data = await authClient.signIn.social({
+            provider: "google",
+          })
+    }
 
+    const handleGithubSignIn = async ()=> {
+      const data = await authClient.signIn.social({
+        provider: "github"
+    })
+    }
 
     return (
         <div className="grid justify-items-center my-10 space-y-3">
@@ -41,7 +51,8 @@ const SignUpPage = () => {
           <h1 className="font-bold">একাউন্ট তৈরি করুন</h1>
           <p className="text-gray-600 text-sm">বিনা করছে সাইন আপ করে সব বিস্তারিত দাম দেখুন।</p>
 
-           <form onSubmit={handleSignUP}> <fieldset className="fieldset  shadow-sm border-base-300 rounded-box w-xs border p-4">
+           <div className="fieldset  shadow-sm border-base-300 rounded-box w-xs border p-4">
+            <form onSubmit={handleSignUP}> <fieldset className="fieldset">
 
 
   <label className="label font-bold">নাম</label>
@@ -73,6 +84,15 @@ const SignUpPage = () => {
    <div className="divider">অথবা</div>
           <p className="text-center font-bold">একাউন্ট আছে? <Link href="/sign-in" className="text-green-500 hover:underline">সাইন ইন করুন</Link></p>
 </fieldset></form>
+<div className="grid justify-items-center my-2 gap-2 ">
+       <button onClick={hangleGoogleSignIn}
+      className="btn shadow-sm">Google দিয়ে চালিয়ে যান</button>
+      <button onClick={handleGithubSignIn}
+       className="btn shadow-sm">Github দিয়ে চালিয়ে যান</button>
+     </div>
+           </div>
+
+                 <Link href="/" className="text-gray-500 hover:underline">হোমপেজে ফিরে যান</Link>
         </div>
     );
 };
