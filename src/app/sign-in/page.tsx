@@ -6,6 +6,7 @@ import React from "react";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const SignInPage = () => {
   const handleSignIn = async (e: React.SubmitEvent<HTMLElement>) => {
@@ -29,7 +30,7 @@ const SignInPage = () => {
       redirect("/");
     }
     if (error) {
-      console.log(error);
+      toast.error("Inavlid email or password. Please try again.");
     }
   };
 
@@ -60,6 +61,7 @@ const SignInPage = () => {
             <input
               type="email"
               className="input"
+              name="email"
               placeholder="you@example.com"
             />
 
@@ -68,6 +70,7 @@ const SignInPage = () => {
             <input
               type="password"
               className="input"
+              name="password"
               placeholder="কমপক্ষে ৮ অক্ষর"
             ></input>
 

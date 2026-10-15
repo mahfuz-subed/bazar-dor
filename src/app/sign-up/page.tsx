@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 import { useState } from "react";
 import Link from "next/link";
-
+import toast from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 
@@ -35,7 +35,9 @@ const SignUpPage = () => {
       redirect("/");
     }
     if (error) {
-      console.log(error);
+      toast.error(
+        "An account with this email may already exist. Try signing in instead.",
+      );
     }
   };
 
